@@ -1,0 +1,699 @@
+{
+    "request": {
+     "airport": {
+      "requestedCode": "SVO",
+      "fsCode": "SVO"
+     },
+     "date": {
+      "year": "2019",
+      "month": "1",
+      "day": "31",
+      "interpreted": "2019-01-31"
+     },
+     "hourOfDay": {
+      "requested": "15",
+      "interpreted": 15
+     },
+     "numHours": {
+      "requested": "1",
+      "interpreted": 1
+     },
+     "utc": {
+      "requested": "false",
+      "interpreted": false
+     },
+     "codeType": {},
+     "maxFlights": {
+      "requested": "5",
+      "interpreted": 5
+     },
+     "extendedOptions": {},
+     "url": "https://api.flightstats.com/flex/flightstatus/rest/v2/json/airport/status/SVO/arr/2019/1/31/15"
+    },
+    "appendix": {
+     "airlines": [
+      {
+       "fs": "SU",
+       "iata": "SU",
+       "icao": "AFL",
+       "name": "Aeroflot",
+       "phoneNumber": "+7 495 223-55-55",
+       "active": true
+      },
+      {
+       "fs": "AF",
+       "iata": "AF",
+       "icao": "AFR",
+       "name": "Air France",
+       "phoneNumber": "1-800-237-2747",
+       "active": true
+      },
+      {
+       "fs": "JP",
+       "iata": "JP",
+       "icao": "ADR",
+       "name": "Adria Airways",
+       "active": true
+      },
+      {
+       "fs": "DL",
+       "iata": "DL",
+       "icao": "DAL",
+       "name": "Delta Air Lines",
+       "phoneNumber": "1-800-221-1212",
+       "active": true
+      },
+      {
+       "fs": "IK*",
+       "iata": "EO",
+       "icao": "KAR",
+       "name": "Pegas Fly",
+       "active": true
+      },
+      {
+       "fs": "AZ",
+       "iata": "AZ",
+       "icao": "AZA",
+       "name": "Alitalia",
+       "phoneNumber": "1-800-223-5730",
+       "active": true
+      }
+     ],
+     "airports": [
+      {
+       "fs": "MXP",
+       "iata": "MXP",
+       "icao": "LIMC",
+       "name": "Milano Malpensa Airport",
+       "city": "Milan",
+       "cityCode": "MIL",
+       "countryCode": "IT",
+       "countryName": "Italy",
+       "regionName": "Europe",
+       "timeZoneRegionName": "Europe/Rome",
+       "localTime": "2019-01-31T13:21:23.869",
+       "utcOffsetHours": 1,
+       "latitude": 45.627405,
+       "longitude": 8.71237,
+       "elevationFeet": 733,
+       "classification": 2,
+       "active": true,
+       "delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/MXP?codeType=fs",
+       "weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/MXP?codeType=fs"
+      },
+      {
+       "fs": "CDG",
+       "iata": "CDG",
+       "icao": "LFPG",
+       "name": "Charles de Gaulle Airport",
+       "street1": "95711, Roissy Charles de Gaulle",
+       "city": "Paris",
+       "cityCode": "PAR",
+       "countryCode": "FR",
+       "countryName": "France",
+       "regionName": "Europe",
+       "timeZoneRegionName": "Europe/Paris",
+       "localTime": "2019-01-31T13:21:23.867",
+       "utcOffsetHours": 1,
+       "latitude": 49.003196,
+       "longitude": 2.567023,
+       "elevationFeet": 387,
+       "classification": 1,
+       "active": true,
+       "delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/CDG?codeType=fs",
+       "weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/CDG?codeType=fs"
+      },
+      {
+       "fs": "SVO",
+       "iata": "SVO",
+       "icao": "UUEE",
+       "name": "Sheremetyevo International Airport",
+       "city": "Moscow",
+       "cityCode": "MOW",
+       "countryCode": "RU",
+       "countryName": "Russian Federation",
+       "regionName": "Europe",
+       "timeZoneRegionName": "Europe/Moscow",
+       "localTime": "2019-01-31T15:21:23.794",
+       "utcOffsetHours": 3,
+       "latitude": 55.966324,
+       "longitude": 37.416574,
+       "elevationFeet": 630,
+       "classification": 1,
+       "active": true,
+       "delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/SVO?codeType=fs",
+       "weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/SVO?codeType=fs"
+      },
+      {
+       "fs": "LJU",
+       "iata": "LJU",
+       "icao": "LJLJ",
+       "name": "Ljubljana Joze Pucnik Airport",
+       "city": "Ljubljana",
+       "cityCode": "LJU",
+       "countryCode": "SI",
+       "countryName": "Slovenia",
+       "regionName": "Europe",
+       "timeZoneRegionName": "Europe/Ljubljana",
+       "localTime": "2019-01-31T13:21:23.868",
+       "utcOffsetHours": 1,
+       "latitude": 46.23102,
+       "longitude": 14.454972,
+       "elevationFeet": 1273,
+       "classification": 3,
+       "active": true,
+       "delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/LJU?codeType=fs",
+       "weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/LJU?codeType=fs"
+      },
+      {
+       "fs": "MUC",
+       "iata": "MUC",
+       "icao": "EDDM",
+       "name": "Franz Josef Strauss Airport",
+       "city": "Munich",
+       "cityCode": "MUC",
+       "countryCode": "DE",
+       "countryName": "Germany",
+       "regionName": "Europe",
+       "timeZoneRegionName": "Europe/Berlin",
+       "localTime": "2019-01-31T13:21:23.869",
+       "utcOffsetHours": 1,
+       "latitude": 48.353005,
+       "longitude": 11.790143,
+       "elevationFeet": 1486,
+       "classification": 1,
+       "active": true,
+       "delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/MUC?codeType=fs",
+       "weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/MUC?codeType=fs"
+      },
+      {
+       "fs": "CXR",
+       "iata": "CXR",
+       "icao": "VVCR",
+       "name": "Cam Ranh International Airport",
+       "city": "Nha Trang",
+       "cityCode": "NHA",
+       "countryCode": "VN",
+       "countryName": "Viet Nam",
+       "regionName": "Asia",
+       "timeZoneRegionName": "Asia/Ho_Chi_Minh",
+       "localTime": "2019-01-31T19:21:23.867",
+       "utcOffsetHours": 7,
+       "latitude": 12.006816,
+       "longitude": 109.21695,
+       "elevationFeet": 35,
+       "classification": 4,
+       "active": true,
+       "delayIndexUrl": "https://api.flightstats.com/flex/delayindex/rest/v1/json/airports/CXR?codeType=fs",
+       "weatherUrl": "https://api.flightstats.com/flex/weather/rest/v1/json/all/CXR?codeType=fs"
+      }
+     ],
+     "equipments": [
+      {
+       "iata": "32B",
+       "name": "Airbus A321 (sharklets)",
+       "turboProp": false,
+       "jet": true,
+       "widebody": false,
+       "regional": false
+      },
+      {
+       "iata": "CR7",
+       "name": "Canadair (Bombardier) Regional Jet 700 and Challenger 870",
+       "turboProp": false,
+       "jet": true,
+       "widebody": false,
+       "regional": true
+      },
+      {
+       "iata": "CR9",
+       "name": "Canadair (Bombardier) Regional Jet 900 and Challenger 890",
+       "turboProp": false,
+       "jet": true,
+       "widebody": false,
+       "regional": true
+      },
+      {
+       "iata": "320",
+       "name": "Airbus A320",
+       "turboProp": false,
+       "jet": true,
+       "widebody": false,
+       "regional": false
+      },
+      {
+       "iata": "321",
+       "name": "Airbus A321",
+       "turboProp": false,
+       "jet": true,
+       "widebody": false,
+       "regional": false
+      },
+      {
+       "iata": "763",
+       "name": "Boeing 767-300 Passenger",
+       "turboProp": false,
+       "jet": true,
+       "widebody": true,
+       "regional": false
+      },
+      {
+       "iata": "319",
+       "name": "Airbus A319",
+       "turboProp": false,
+       "jet": true,
+       "widebody": false,
+       "regional": false
+      }
+     ]
+    },
+    "flightStatuses": [
+     {
+      "flightId": 988405421,
+      "carrierFsCode": "IK*",
+      "flightNumber": "2736",
+      "departureAirportFsCode": "CXR",
+      "arrivalAirportFsCode": "SVO",
+      "departureDate": {
+       "dateLocal": "2019-01-31T08:05:00.000",
+       "dateUtc": "2019-01-31T01:05:00.000Z"
+      },
+      "arrivalDate": {
+       "dateLocal": "2019-01-31T15:35:00.000",
+       "dateUtc": "2019-01-31T12:35:00.000Z"
+      },
+      "status": "A",
+      "schedule": {
+       "flightType": "C",
+       "serviceClasses": "Y",
+       "restrictions": ""
+      },
+      "operationalTimes": {
+       "publishedDeparture": {
+        "dateLocal": "2019-01-31T08:05:00.000",
+        "dateUtc": "2019-01-31T01:05:00.000Z"
+       },
+       "publishedArrival": {
+        "dateLocal": "2019-01-31T15:35:00.000",
+        "dateUtc": "2019-01-31T12:35:00.000Z"
+       },
+       "scheduledGateDeparture": {
+        "dateLocal": "2019-01-31T08:05:00.000",
+        "dateUtc": "2019-01-31T01:05:00.000Z"
+       },
+       "estimatedRunwayDeparture": {
+        "dateLocal": "2019-01-31T08:27:00.000",
+        "dateUtc": "2019-01-31T01:27:00.000Z"
+       },
+       "actualRunwayDeparture": {
+        "dateLocal": "2019-01-31T08:27:00.000",
+        "dateUtc": "2019-01-31T01:27:00.000Z"
+       },
+       "scheduledGateArrival": {
+        "dateLocal": "2019-01-31T15:35:00.000",
+        "dateUtc": "2019-01-31T12:35:00.000Z"
+       },
+       "estimatedGateArrival": {
+        "dateLocal": "2019-01-31T15:27:00.000",
+        "dateUtc": "2019-01-31T12:27:00.000Z"
+       },
+       "estimatedRunwayArrival": {
+        "dateLocal": "2019-01-31T15:21:00.000",
+        "dateUtc": "2019-01-31T12:21:00.000Z"
+       }
+      },
+      "flightDurations": {
+       "scheduledBlockMinutes": 690
+      },
+      "airportResources": {
+       "departureTerminal": "1",
+       "arrivalTerminal": "F",
+       "baggage": "7"
+      },
+      "flightEquipment": {
+       "scheduledEquipmentIataCode": "763",
+       "actualEquipmentIataCode": "763",
+       "tailNumber": "VP-BOY"
+      }
+     },
+     {
+      "flightId": 988381914,
+      "carrierFsCode": "AF",
+      "flightNumber": "1044",
+      "departureAirportFsCode": "CDG",
+      "arrivalAirportFsCode": "SVO",
+      "departureDate": {
+       "dateLocal": "2019-01-31T09:35:00.000",
+       "dateUtc": "2019-01-31T08:35:00.000Z"
+      },
+      "arrivalDate": {
+       "dateLocal": "2019-01-31T15:20:00.000",
+       "dateUtc": "2019-01-31T12:20:00.000Z"
+      },
+      "status": "A",
+      "schedule": {
+       "flightType": "J",
+       "serviceClasses": "RFJY",
+       "restrictions": ""
+      },
+      "operationalTimes": {
+       "publishedDeparture": {
+        "dateLocal": "2019-01-31T09:35:00.000",
+        "dateUtc": "2019-01-31T08:35:00.000Z"
+       },
+       "publishedArrival": {
+        "dateLocal": "2019-01-31T15:20:00.000",
+        "dateUtc": "2019-01-31T12:20:00.000Z"
+       },
+       "scheduledGateDeparture": {
+        "dateLocal": "2019-01-31T09:35:00.000",
+        "dateUtc": "2019-01-31T08:35:00.000Z"
+       },
+       "estimatedGateDeparture": {
+        "dateLocal": "2019-01-31T10:01:00.000",
+        "dateUtc": "2019-01-31T09:01:00.000Z"
+       },
+       "actualGateDeparture": {
+        "dateLocal": "2019-01-31T10:01:00.000",
+        "dateUtc": "2019-01-31T09:01:00.000Z"
+       },
+       "estimatedRunwayDeparture": {
+        "dateLocal": "2019-01-31T10:13:00.000",
+        "dateUtc": "2019-01-31T09:13:00.000Z"
+       },
+       "actualRunwayDeparture": {
+        "dateLocal": "2019-01-31T10:13:00.000",
+        "dateUtc": "2019-01-31T09:13:00.000Z"
+       },
+       "scheduledGateArrival": {
+        "dateLocal": "2019-01-31T15:20:00.000",
+        "dateUtc": "2019-01-31T12:20:00.000Z"
+       },
+       "estimatedGateArrival": {
+        "dateLocal": "2019-01-31T15:33:00.000",
+        "dateUtc": "2019-01-31T12:33:00.000Z"
+       },
+       "estimatedRunwayArrival": {
+        "dateLocal": "2019-01-31T15:26:00.000",
+        "dateUtc": "2019-01-31T12:26:00.000Z"
+       }
+      },
+      "codeshares": [
+       {
+        "fsCode": "DL",
+        "flightNumber": "8614",
+        "relationship": "L"
+       },
+       {
+        "fsCode": "SU",
+        "flightNumber": "3001",
+        "relationship": "L"
+       }
+      ],
+      "delays": {
+       "departureGateDelayMinutes": 26,
+       "arrivalGateDelayMinutes": 13
+      },
+      "flightDurations": {
+       "scheduledBlockMinutes": 225,
+       "taxiOutMinutes": 12
+      },
+      "airportResources": {
+       "departureTerminal": "2E",
+       "departureGate": "K31",
+       "arrivalTerminal": "E",
+       "baggage": "1"
+      },
+      "flightEquipment": {
+       "scheduledEquipmentIataCode": "319",
+       "actualEquipmentIataCode": "319",
+       "tailNumber": "F-GRXF"
+      }
+     },
+     {
+      "flightId": 988420270,
+      "carrierFsCode": "JP",
+      "flightNumber": "914",
+      "departureAirportFsCode": "LJU",
+      "arrivalAirportFsCode": "SVO",
+      "departureDate": {
+       "dateLocal": "2019-01-31T10:00:00.000",
+       "dateUtc": "2019-01-31T09:00:00.000Z"
+      },
+      "arrivalDate": {
+       "dateLocal": "2019-01-31T15:05:00.000",
+       "dateUtc": "2019-01-31T12:05:00.000Z"
+      },
+      "status": "L",
+      "schedule": {
+       "flightType": "J",
+       "serviceClasses": "RFJY",
+       "restrictions": ""
+      },
+      "operationalTimes": {
+       "publishedDeparture": {
+        "dateLocal": "2019-01-31T10:00:00.000",
+        "dateUtc": "2019-01-31T09:00:00.000Z"
+       },
+       "publishedArrival": {
+        "dateLocal": "2019-01-31T15:05:00.000",
+        "dateUtc": "2019-01-31T12:05:00.000Z"
+       },
+       "scheduledGateDeparture": {
+        "dateLocal": "2019-01-31T10:00:00.000",
+        "dateUtc": "2019-01-31T09:00:00.000Z"
+       },
+       "estimatedGateDeparture": {
+        "dateLocal": "2019-01-31T10:03:00.000",
+        "dateUtc": "2019-01-31T09:03:00.000Z"
+       },
+       "actualGateDeparture": {
+        "dateLocal": "2019-01-31T10:03:00.000",
+        "dateUtc": "2019-01-31T09:03:00.000Z"
+       },
+       "estimatedRunwayDeparture": {
+        "dateLocal": "2019-01-31T10:14:00.000",
+        "dateUtc": "2019-01-31T09:14:00.000Z"
+       },
+       "actualRunwayDeparture": {
+        "dateLocal": "2019-01-31T10:14:00.000",
+        "dateUtc": "2019-01-31T09:14:00.000Z"
+       },
+       "scheduledGateArrival": {
+        "dateLocal": "2019-01-31T15:05:00.000",
+        "dateUtc": "2019-01-31T12:05:00.000Z"
+       },
+       "estimatedGateArrival": {
+        "dateLocal": "2019-01-31T14:57:00.000",
+        "dateUtc": "2019-01-31T11:57:00.000Z"
+       },
+       "estimatedRunwayArrival": {
+        "dateLocal": "2019-01-31T14:44:00.000",
+        "dateUtc": "2019-01-31T11:44:00.000Z"
+       },
+       "actualRunwayArrival": {
+        "dateLocal": "2019-01-31T14:44:00.000",
+        "dateUtc": "2019-01-31T11:44:00.000Z"
+       }
+      },
+      "codeshares": [
+       {
+        "fsCode": "SU",
+        "flightNumber": "4161",
+        "relationship": "L"
+       }
+      ],
+      "delays": {
+       "departureGateDelayMinutes": 3
+      },
+      "flightDurations": {
+       "scheduledBlockMinutes": 185,
+       "airMinutes": 150,
+       "taxiOutMinutes": 11
+      },
+      "airportResources": {
+       "departureGate": "08",
+       "arrivalTerminal": "E",
+       "baggage": "2"
+      },
+      "flightEquipment": {
+       "scheduledEquipmentIataCode": "CR7",
+       "actualEquipmentIataCode": "CR9",
+       "tailNumber": "S5-AAL"
+      }
+     },
+     {
+      "flightId": 988447226,
+      "carrierFsCode": "SU",
+      "flightNumber": "2321",
+      "departureAirportFsCode": "MUC",
+      "arrivalAirportFsCode": "SVO",
+      "departureDate": {
+       "dateLocal": "2019-01-31T10:05:00.000",
+       "dateUtc": "2019-01-31T09:05:00.000Z"
+      },
+      "arrivalDate": {
+       "dateLocal": "2019-01-31T15:05:00.000",
+       "dateUtc": "2019-01-31T12:05:00.000Z"
+      },
+      "status": "L",
+      "schedule": {
+       "flightType": "J",
+       "serviceClasses": "RJY",
+       "restrictions": ""
+      },
+      "operationalTimes": {
+       "publishedDeparture": {
+        "dateLocal": "2019-01-31T10:05:00.000",
+        "dateUtc": "2019-01-31T09:05:00.000Z"
+       },
+       "publishedArrival": {
+        "dateLocal": "2019-01-31T15:05:00.000",
+        "dateUtc": "2019-01-31T12:05:00.000Z"
+       },
+       "scheduledGateDeparture": {
+        "dateLocal": "2019-01-31T10:05:00.000",
+        "dateUtc": "2019-01-31T09:05:00.000Z"
+       },
+       "estimatedGateDeparture": {
+        "dateLocal": "2019-01-31T10:14:00.000",
+        "dateUtc": "2019-01-31T09:14:00.000Z"
+       },
+       "actualGateDeparture": {
+        "dateLocal": "2019-01-31T10:14:00.000",
+        "dateUtc": "2019-01-31T09:14:00.000Z"
+       },
+       "estimatedRunwayDeparture": {
+        "dateLocal": "2019-01-31T10:26:00.000",
+        "dateUtc": "2019-01-31T09:26:00.000Z"
+       },
+       "actualRunwayDeparture": {
+        "dateLocal": "2019-01-31T10:26:00.000",
+        "dateUtc": "2019-01-31T09:26:00.000Z"
+       },
+       "scheduledGateArrival": {
+        "dateLocal": "2019-01-31T15:05:00.000",
+        "dateUtc": "2019-01-31T12:05:00.000Z"
+       },
+       "estimatedGateArrival": {
+        "dateLocal": "2019-01-31T15:13:00.000",
+        "dateUtc": "2019-01-31T12:13:00.000Z"
+       },
+       "estimatedRunwayArrival": {
+        "dateLocal": "2019-01-31T15:07:00.000",
+        "dateUtc": "2019-01-31T12:07:00.000Z"
+       },
+       "actualRunwayArrival": {
+        "dateLocal": "2019-01-31T15:07:00.000",
+        "dateUtc": "2019-01-31T12:07:00.000Z"
+       }
+      },
+      "delays": {
+       "departureGateDelayMinutes": 9,
+       "arrivalGateDelayMinutes": 8
+      },
+      "flightDurations": {
+       "scheduledBlockMinutes": 180,
+       "airMinutes": 161,
+       "taxiOutMinutes": 12
+      },
+      "airportResources": {
+       "departureTerminal": "1",
+       "departureGate": "C5",
+       "arrivalTerminal": "D",
+       "baggage": "9"
+      },
+      "flightEquipment": {
+       "scheduledEquipmentIataCode": "32B",
+       "actualEquipmentIataCode": "321",
+       "tailNumber": "VP-BTK"
+      }
+     },
+     {
+      "flightId": 988447328,
+      "carrierFsCode": "SU",
+      "flightNumber": "2417",
+      "departureAirportFsCode": "MXP",
+      "arrivalAirportFsCode": "SVO",
+      "departureDate": {
+       "dateLocal": "2019-01-31T10:05:00.000",
+       "dateUtc": "2019-01-31T09:05:00.000Z"
+      },
+      "arrivalDate": {
+       "dateLocal": "2019-01-31T15:35:00.000",
+       "dateUtc": "2019-01-31T12:35:00.000Z"
+      },
+      "status": "A",
+      "schedule": {
+       "flightType": "J",
+       "serviceClasses": "RJY",
+       "restrictions": ""
+      },
+      "operationalTimes": {
+       "publishedDeparture": {
+        "dateLocal": "2019-01-31T10:05:00.000",
+        "dateUtc": "2019-01-31T09:05:00.000Z"
+       },
+       "publishedArrival": {
+        "dateLocal": "2019-01-31T15:35:00.000",
+        "dateUtc": "2019-01-31T12:35:00.000Z"
+       },
+       "scheduledGateDeparture": {
+        "dateLocal": "2019-01-31T10:05:00.000",
+        "dateUtc": "2019-01-31T09:05:00.000Z"
+       },
+       "estimatedGateDeparture": {
+        "dateLocal": "2019-01-31T09:51:00.000",
+        "dateUtc": "2019-01-31T08:51:00.000Z"
+       },
+       "actualGateDeparture": {
+        "dateLocal": "2019-01-31T09:51:00.000",
+        "dateUtc": "2019-01-31T08:51:00.000Z"
+       },
+       "estimatedRunwayDeparture": {
+        "dateLocal": "2019-01-31T10:12:00.000",
+        "dateUtc": "2019-01-31T09:12:00.000Z"
+       },
+       "actualRunwayDeparture": {
+        "dateLocal": "2019-01-31T10:12:00.000",
+        "dateUtc": "2019-01-31T09:12:00.000Z"
+       },
+       "scheduledGateArrival": {
+        "dateLocal": "2019-01-31T15:35:00.000",
+        "dateUtc": "2019-01-31T12:35:00.000Z"
+       },
+       "estimatedGateArrival": {
+        "dateLocal": "2019-01-31T15:23:00.000",
+        "dateUtc": "2019-01-31T12:23:00.000Z"
+       },
+       "estimatedRunwayArrival": {
+        "dateLocal": "2019-01-31T15:17:00.000",
+        "dateUtc": "2019-01-31T12:17:00.000Z"
+       }
+      },
+      "codeshares": [
+       {
+        "fsCode": "AZ",
+        "flightNumber": "7028",
+        "relationship": "L"
+       }
+      ],
+      "flightDurations": {
+       "scheduledBlockMinutes": 210,
+       "taxiOutMinutes": 21
+      },
+      "airportResources": {
+       "departureTerminal": "1",
+       "departureGate": "B51",
+       "arrivalTerminal": "D",
+       "arrivalGate": "24",
+       "baggage": "6"
+      },
+      "flightEquipment": {
+       "scheduledEquipmentIataCode": "320",
+       "actualEquipmentIataCode": "320",
+       "tailNumber": "VQ-BAY"
+      }
+     }
+    ]
+   }
