@@ -1,65 +1,71 @@
 <template>
   <div class="timetable-wrap">
-    <table class="timetable">
-      <thead>
-        <tr>
-          <th class="timetable__cell">Номер рейса</th>
-          <th class="timetable__cell">Город</th>
-          <!--<th class="timetable__cell">arrivalAirport</th>-->
-          <th class="timetable__cell">Терминал</th>
-          <th class="timetable__cell">Время прибытия</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr 
-          v-for="flight in flights"
-          :key="flight.carrierFsCode + flight.flightNumber"
-          class="timetable__row"
-        >
-          <td class="timetable__cell">
-            {{ flight.flightNumber }}
-          </td>
-          <td class="timetable__cell">
-            <div>
-              {{ airports[flight.departureAirportFsCode].city }}
-            </div>
-            <div>
-              {{ airports[flight.departureAirportFsCode].countryName }}
-            </div>
-          </td>
-          <!--<td class="timetable__cell">
-            <div>
-              {{ airports[flight.arrivalAirportFsCode].city }}
-            </div>
-            <div>
-              {{ airports[flight.arrivalAirportFsCode].countryName }}
-            </div>
-          </td>-->
-          <td class="timetable__cell">
-            {{ flight.arrivalTerminal }}
-          </td>
-          <td class="timetable__cell">
-            {{ flight.arrivalTime | wrapAsNotification }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="_shadow">
+      <admin-panel 
+        @settingsUpdate="(data) => $emit('settingsUpdate', data)" 
+      />
+      <table
+        v-if="flights.length > 0" 
+        class="timetable"
+      >
+        <thead class="timetable__thead">
+          <tr class="timetable__row">
+            <th class="timetable__cell">Номер рейса</th>
+            <th class="timetable__cell">Город</th>
+            <th class="timetable__cell">Терминал</th>
+            <th class="timetable__cell">Время прибытия</th>
+          </tr>
+        </thead>
+        <tbody class="timetable__tbody">
+          <tr
+            v-for="flight in flights"
+            :key="flight.carrierFsCode + flight.flightNumber"
+            class="timetable__row"
+          >
+            <td class="timetable__cell">{{ flight.flightNumber }}</td>
+            <td class="timetable__cell">
+              <div>
+                {{ airports[flight.departureAirportFsCode].city }}
+              </div>
+              <div>{{ airports[flight.departureAirportFsCode].countryName }}</div>
+            </td>
+            <td class="timetable__cell">
+              {{ flight.airportResources | safeGettingTerminal}}
+            </td>
+            <td class="timetable__cell">
+              {{ flight.arrivalDate.dateLocal | wrapAsNotification }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 v-else class="_error">
+        Рейсов нет
+      </h2>
+    </div>
   </div>
 </template>
 
 <script>
+import AdminPanel from "./AdminPanel.vue";
+
 export default {
   name: "AirSchedule",
+  components: {
+    AdminPanel
+  },
   filters: {
     wrapAsNotification: function(rawDateStr) {
       var date = new Date(rawDateStr);
       var minutes = date.getMinutes();
-      minutes = minutes > 9 ? minutes : '0' + minutes;
+      minutes = minutes > 9 ? minutes : "0" + minutes;
 
-      if (date > Date.now())
-        return `Ожидается в ${date.getHours()}:${minutes}`
+      return `${date.getHours()}:${minutes}`;
+    },
+    safeGettingTerminal: function(airportResources) {
+      if (airportResources && airportResources.arrivalTerminal)
+        return airportResources.arrivalTerminal;
       else
-        return `Совершил посадку в ${date.getHours()}:${minutes}`
+        return 'Информации нет';
     }
   },
   props: {
@@ -78,21 +84,53 @@ export default {
 <style lang="less" scoped>
 .timetable-wrap {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+._shadow {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+._shadow:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
 .timetable {
+  width: 50vw;
   border-collapse: collapse;
-  box-shadow: 0 2px 4px 0 rgba(134, 121, 71, 0.45);
+  background-color: rgba(255, 255, 255, 0.9)
+}
+.timetable__thead {
+  width: calc(
+    100% - 1em
+  );
+}
+.timetable__tbody {
+  max-height: 25vw;
+  display: block;
+  overflow: auto;
+}
+.timetable__thead,
+.timetable__tbody .timetable__row {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
 }
 .timetable__row {
-  border-top: 1px solid lightgray;
-
+  border-bottom: 1px solid lightgray;
   &:hover {
     background-color: whitesmoke;
   }
 }
 .timetable__cell {
-  padding: 1rem;
+  padding: 2vw;
+  text-align: center; 
+  vertical-align: middle;
+}
+._error {
+  width: 50vw;
+  padding: 2vw;
+  background-color: lightcoral;
+  border: 1px solid lightgray;
 }
 </style>

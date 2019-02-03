@@ -1,11 +1,10 @@
 <template>
   <div id="app">
-    <!--<img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>-->
     <air-schedule 
       v-if="isDataReady" 
-      :flights="flights"
+      :flights="flights" 
       :airports="airports"
+      @settingsUpdate="getAirportData"
     />
   </div>
 </template>
@@ -14,13 +13,13 @@
 /**
  * SVO - код аэропорта шереметьево
  */
-import SVO_Schedule from './fakeData/SVO_Schedule.json'
-import SVO_Statuses from './fakeData/SVO_Statuses.json'
-import HelloWorld from './components/HelloWorld.vue'
-import AirSchedule from './components/AirSchedule.vue'
+import SVO_Schedule from "./fakeData/SVO_Schedule.json";
+import SVO_Statuses from "./fakeData/SVO_Statuses.json";
+import HelloWorld from "./components/HelloWorld.vue";
+import AirSchedule from "./components/AirSchedule.vue";
 
 export default {
-  name: 'app',
+  name: "app",
   components: {
     HelloWorld,
     AirSchedule
@@ -30,59 +29,81 @@ export default {
       flights: {},
       airports: {},
       isDataReady: false
-    }
+    };
   },
   created: function() {
-    this.parseRawData(this.getFakeSVOData())
+    this.getAirportData();
   },
   methods: {
-    getSVOData: function() {
-      var myHeaders = new Headers();
-      myHeaders.append("Content-Type", "text/json");
+    getAirportData: function(obj) {
+      //this.isDataReady = false;
+      let currentDate = new Date();
 
-      fetch(
-        "https://api.flightstats.com/flex/schedules/rest/v1/json/to/SVO/arriving/2019/1/31/9?appId=4e6e22ed&appKey=84e0e5775586e5b18c5de421ffe0fa3e",
-        {
-          method: "GET",
-          headers: myHeaders,
-          mode: "cors",
-          cache: "default",
-          qs: {
-            appId: "4e6e22ed",
-            appKey: "84e0e5775586e5b18c5de421ffe0fa3e",
-            arrivalAirportCode: "SVO",
-            year: new Date().getYear(),
-            month: new Date().getMonth(),
-            day: new Date().getDay(),
-            hourOfDay: new Date().getHours()
-          }
-        }
-      ).then(resp => {
-        this.schedule = resp.json();
+      let settings = obj ? obj.settings : null;
+      let isArrive = obj ? obj.isArrive : true;
+
+      let params = settings || {
+        arrivalAirportCode: "SVO",
+        year: currentDate.getFullYear(),
+        month: currentDate.getMonth() + 1,
+        day: currentDate.getDate(),
+        hourOfDay: currentDate.getHours()
+      };
+
+      let query = Object.keys(params)
+        .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
+        .join("&");
+
+      query += '&' + encodeURIComponent('isArrive') 
+        + '=' + encodeURIComponent(isArrive) //анти-реактивный костыль, что поделать, не успеваю
+
+      fetch("http://localhost:3000/url?" + query, {
+        method: "POST"
+      }).then(resp => {
+        resp.json().then(data => {
+          this.parseRawData(JSON.parse(data));
+        });
       });
     },
     getFakeSVOData: function() {
-      return SVO_Schedule
+      return SVO_Schedule;
     },
     parseRawData: function(data) {
-      data.appendix.airports.forEach(airport => {
-        const {fs, ...clean} = airport
-        this.airports[airport.fs] = clean
-      });
-      this.flights = data.scheduledFlights
-      this.isDataReady = true
+      console.log(data);
+      if (data && !data.error) {
+        data.appendix.airports.forEach(airport => {
+          const { fs, ...clean } = airport;
+          this.airports[airport.fs] = clean;
+        });
+        this.flights = data.flightStatuses;
+        this.isDataReady = true;
+      } else
+        alert(
+          `Ошибка, перезагрузите страницу. ${
+            data ? data.error.errorMessage : ""
+          }`
+        );
     }
   }
-}
+};
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+body {
+  background-color: #eee;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>

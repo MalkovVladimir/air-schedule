@@ -1,0 +1,14 @@
+{
+  "name": "corsproxybackend",
+  "version": "1.0.0",
+  "description": "Cors proxy for API calls",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Malkov V.V",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
