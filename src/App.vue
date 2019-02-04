@@ -98,12 +98,6 @@ export default {
 body {
   background-color: #eee;
 }
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
 .slide-leave-active,
 .slide-enter-active {
   transition: 1s;

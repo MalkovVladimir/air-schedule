@@ -109,12 +109,14 @@ export default {
   user-select: none;
 }
 .adminPanel__wrap {
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 .adminPanel:extend(.adminPanel__wrap) {
-  width: calc(46vw + 1px);
+  width: calc(100% - 4vw + 1px);
   background-color: #8EC5FC;
   background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
   padding-left: 2vw;
@@ -162,7 +164,7 @@ export default {
 .flightDirection {
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 .flightDirection__title{
   transition: opacity 0.2s ease-in-out;
