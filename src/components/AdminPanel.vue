@@ -7,16 +7,14 @@
       >
         {{ isPanelOpened ? 'expand_more' : 'expand_less' }}
       </i>
-      <transition name="fade">
-        <table class="settingTable" v-show="isPanelOpened">
+      <div :class="['settingTable__wrap', { maximize: isPanelOpened }]">
+        <table class="settingTable">
           <tr
             v-for="(val, key) in settings"
             :key="key"
             class="settingTable__row"
           >
-            <td
-              class="settingTable__label"
-            >
+            <td class="settingTable__label">
               {{ description[key] }}
             </td>
             <td>
@@ -40,7 +38,7 @@
             </td>
           </tr>
         </table>
-      </transition>
+      </div>
       <div class="flightDirection">
         <h2
           @click="raiseUpdateEvent(true)"
@@ -111,6 +109,7 @@ export default {
   display: flex;
   align-items: center;
   cursor: pointer;
+  user-select: none;
 }
 .adminPanel__wrap {
   display: flex;
@@ -124,9 +123,18 @@ export default {
   padding-left: 2vw;
   padding-right: 2vw;
 }
-.settingTable {
-  border-collapse: collapse;
+.settingTable__wrap {
   width: 100%;
+  height: 0px;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+.maximize {
+  height: 15vw;
+}
+.settingTable {
+  width: 100%;
+  border-collapse: collapse;
 }
 .settingTable__row {
   padding: 5%;
@@ -136,7 +144,7 @@ export default {
   font-size: 1vw;
 }
 .settingTable__button {
-  width: 79%;
+  width: 20%;
   border-width: 0px;
   padding: 0.5vw;
   background-color: white

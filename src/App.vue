@@ -109,4 +109,14 @@ body {
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+.slide-leave-active,
+.slide-enter-active {
+  transition: 1s;
+}
+.slide-enter {
+  transform: translate(0, 100%);
+}
+.slide-leave-to {
+  transform: translate(0, -100%);
+}
 </style>
