@@ -35,7 +35,7 @@ app.post("/url", (req, res, next) => {
             });
 
         }).on("error", (err) => {
-            res.json("Server error: " + err.message);
+            res.json(`{ "apiError": "${err.message}" }`);
             console.log("Error: " + err.message);
         });
 });

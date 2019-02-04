@@ -14,7 +14,6 @@
  * SVO - код аэропорта шереметьево
  */
 import SVO_Schedule from "./fakeData/SVO_Schedule.json";
-import SVO_Statuses from "./fakeData/SVO_Statuses.json";
 import HelloWorld from "./components/HelloWorld.vue";
 import AirSchedule from "./components/AirSchedule.vue";
 
@@ -61,7 +60,11 @@ export default {
         method: "POST"
       }).then(resp => {
         resp.json().then(data => {
-          this.parseRawData(JSON.parse(data));
+          data = JSON.parse(data);
+          if (data.apiError)
+            this.parseRawData(this.getFakeSVOData());
+          else
+            this.parseRawData(data);
         });
       });
     },
