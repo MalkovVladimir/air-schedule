@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <air-schedule 
-      v-if="isDataReady" 
-      :flights="flights" 
+    <air-schedule
+      v-if="isDataReady"
+      :flights="flights"
       :airports="airports"
       @settingsUpdate="getAirportData"
     />
@@ -13,82 +13,77 @@
 /**
  * SVO - код аэропорта шереметьево
  */
-import SVO_Schedule from "./fakeData/SVO_Schedule.json";
-import HelloWorld from "./components/HelloWorld.vue";
-import AirSchedule from "./components/AirSchedule.vue";
+import svoSchedule from './fakeData/SVO_Schedule.json'
+import AirSchedule from './components/AirSchedule.vue'
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
-    HelloWorld,
     AirSchedule
   },
-  data() {
+  data () {
     return {
       flights: {},
       airports: {},
       isDataReady: false
-    };
+    }
   },
-  created: function() {
-    this.getAirportData();
+  created: function () {
+    this.getAirportData()
   },
   methods: {
-    getAirportData: function(obj) {
-      //this.isDataReady = false;
-      let currentDate = new Date();
+    getAirportData: function (obj) {
+      let currentDate = new Date()
 
-      let settings = obj ? obj.settings : null;
-      let isArrive = obj ? obj.isArrive : true;
+      let settings = obj ? obj.settings : null
+      let isArrive = obj ? obj.isArrive : true
 
       let params = settings || {
-        arrivalAirportCode: "SVO",
+        arrivalAirportCode: 'SVO',
         year: currentDate.getFullYear(),
         month: currentDate.getMonth() + 1,
         day: currentDate.getDate(),
         hourOfDay: currentDate.getHours()
-      };
+      }
 
       let query = Object.keys(params)
-        .map(k => encodeURIComponent(k) + "=" + encodeURIComponent(params[k]))
-        .join("&");
+        .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(params[k]))
+        .join('&')
 
-      query += '&' + encodeURIComponent('isArrive') 
-        + '=' + encodeURIComponent(isArrive) //анти-реактивный костыль, что поделать, не успеваю
+      query += '&' + encodeURIComponent('isArrive') +
+        '=' + encodeURIComponent(isArrive) // анти-реактивный костыль, что поделать, не успеваю
 
-      fetch("http://localhost:3000/url?" + query, {
-        method: "POST"
+      fetch('http://localhost:3000/url?' + query, {
+        method: 'POST'
       }).then(resp => {
         resp.json().then(data => {
-          data = JSON.parse(data);
-          if (data.apiError)
-            this.parseRawData(this.getFakeSVOData());
-          else
-            this.parseRawData(data);
-        });
-      });
+          data = JSON.parse(data)
+          if (data.apiError) { this.parseRawData(this.getFakeSVOData()) } else { this.parseRawData(data) }
+        })
+      })
     },
-    getFakeSVOData: function() {
-      return SVO_Schedule;
+    getFakeSVOData: function () {
+      return svoSchedule
     },
-    parseRawData: function(data) {
-      console.log(data);
+    parseRawData: function (data) {
+      console.log(data)
       if (data && !data.error) {
         data.appendix.airports.forEach(airport => {
-          const { fs, ...clean } = airport;
-          this.airports[airport.fs] = clean;
-        });
-        this.flights = data.flightStatuses;
-        this.isDataReady = true;
-      } else
+          const { fs, ...clean } = airport
+          this.airports[airport.fs] = clean
+        })
+        this.flights = data.flightStatuses
+        this.isDataReady = true
+      } else {
         alert(
           `Ошибка, перезагрузите страницу. ${
-            data ? data.error.errorMessage : ""
+            data ? data.error.errorMessage : ''
           }`
-        );
+        )
+      }
     }
   }
-};
+}
 </script>
 
 <style>

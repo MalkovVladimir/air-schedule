@@ -1,29 +1,11 @@
 # air-schedule
 
-## Project setup
-```
-npm install
-```
+Для полного функционирования небходимо запустить два скрипта (т.к проксирую запросы к API, для обхода CORS):
+1. В папке air-schedule/CorsProxyBackend: node index.js
+2. В папке air-schedule: npm run dev
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
+# Прочее
+Вся обработка данных намеренно производилась на фронте, а не при проксировании. Т.к делал второпях.
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).

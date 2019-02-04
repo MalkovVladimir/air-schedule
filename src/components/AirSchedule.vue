@@ -1,11 +1,11 @@
 <template>
   <div class="timetable-wrap">
     <div class="_shadow">
-      <admin-panel 
-        @settingsUpdate="(data) => $emit('settingsUpdate', data)" 
+      <admin-panel
+        @settingsUpdate="(data) => $emit('settingsUpdate', data)"
       />
       <table
-        v-if="flights.length > 0" 
+        v-if="flights.length > 0"
         class="timetable"
       >
         <thead class="timetable__thead">
@@ -46,26 +46,23 @@
 </template>
 
 <script>
-import AdminPanel from "./AdminPanel.vue";
+import AdminPanel from './AdminPanel.vue'
 
 export default {
-  name: "AirSchedule",
+  name: 'AirSchedule',
   components: {
     AdminPanel
   },
   filters: {
-    wrapAsNotification: function(rawDateStr) {
-      var date = new Date(rawDateStr);
-      var minutes = date.getMinutes();
-      minutes = minutes > 9 ? minutes : "0" + minutes;
+    wrapAsNotification: function (rawDateStr) {
+      var date = new Date(rawDateStr)
+      var minutes = date.getMinutes()
+      minutes = minutes > 9 ? minutes : '0' + minutes
 
-      return `${date.getHours()}:${minutes}`;
+      return `${date.getHours()}:${minutes}`
     },
-    safeGettingTerminal: function(airportResources) {
-      if (airportResources && airportResources.arrivalTerminal)
-        return airportResources.arrivalTerminal;
-      else
-        return 'Информации нет';
+    safeGettingTerminal: function (airportResources) {
+      if (airportResources && airportResources.arrivalTerminal) { return airportResources.arrivalTerminal } else { return 'Информации нет' }
     }
   },
   props: {
@@ -78,7 +75,7 @@ export default {
       required: true
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
@@ -124,7 +121,7 @@ export default {
 }
 .timetable__cell {
   padding: 2vw;
-  text-align: center; 
+  text-align: center;
   vertical-align: middle;
 }
 ._error {

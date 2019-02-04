@@ -18,8 +18,8 @@
               {{ description[key] }}
             </td>
             <td>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 :name="val"
                 v-model="settings[key]"
                 class="settingTable__textbox"
@@ -29,8 +29,8 @@
           <tr class="settingTable__row">
             <td></td>
             <td>
-              <input 
-                type="button" 
+              <input
+                type="button"
                 value="Обновить"
                 class="settingTable__button"
                 @click="raiseUpdateEvent()"
@@ -46,7 +46,7 @@
         >
           Прибытие
         </h2>
-        <h2 
+        <h2
           @click="raiseUpdateEvent(false)"
           :class="['flightDirection__title', { _chosen: !isArrive }]"
         >
@@ -59,9 +59,9 @@
 
 <script>
 export default {
-  name: "AdminPanel",
-  data() {
-    let currentDate = new Date();
+  name: 'AdminPanel',
+  data () {
+    let currentDate = new Date()
 
     return {
       isPanelOpened: true,
@@ -80,27 +80,25 @@ export default {
         day: 'День',
         hourOfDay: 'Час дня (0-23)'
       }
-    };
+    }
   },
   methods: {
-    raiseUpdateEvent: function(isArrive) {
-      if (isArrive != null)
-        this.isArrive = isArrive
+    raiseUpdateEvent: function (isArrive) {
+      if (isArrive != null) { this.isArrive = isArrive }
 
-      var isSettingValid = true;
+      var isSettingValid = true
       for (var setting in this.settings) {
-        if (setting == '')
-          isSettingValid = false;
-          break; 
+        if (setting === '') { isSettingValid = false }
+        break
       }
-      
-      this.$emit('settingsUpdate', { 
-        settings: isSettingValid ? this.settings : null, 
+
+      this.$emit('settingsUpdate', {
+        settings: isSettingValid ? this.settings : null,
         isArrive: this.isArrive
       })
     }
   }
-};
+}
 </script>
 
 <style lang="less" scoped>
