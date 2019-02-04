@@ -97,15 +97,25 @@ export default {
   border-collapse: collapse;
   background-color: rgba(255, 255, 255, 0.9)
 }
+@media screen and (max-width: 800px) {
+  .timetable {
+    width: 94vw;
+  }
+}
 .timetable__thead {
   width: calc(
     100% - 1em
   );
 }
 .timetable__tbody {
-  max-height: 25vw;
+  max-height: 20vw;
   display: block;
   overflow: auto;
+}
+@media screen and (max-height: 500px) {
+  .timetable__tbody {
+    max-height: 90%;
+  }
 }
 .timetable__thead,
 .timetable__tbody .timetable__row {

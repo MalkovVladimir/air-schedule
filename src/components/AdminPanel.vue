@@ -103,7 +103,6 @@ export default {
 
 <style lang="less" scoped>
 .expandArrow {
-  height: 2vw;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -121,6 +120,11 @@ export default {
   padding-left: 2vw;
   padding-right: 2vw;
 }
+@media screen and (max-width: 800px) {
+  .adminPanel {
+    width: 90vw;
+  }
+}
 .settingTable__wrap {
   width: 100%;
   height: 0px;
@@ -129,6 +133,11 @@ export default {
 }
 .maximize {
   height: 15vw;
+}
+@media screen and (max-width: 1600px) {
+  .maximize {
+    height: 100%;
+  }
 }
 .settingTable {
   width: 100%;
@@ -139,7 +148,6 @@ export default {
 }
 .settingTable__label{
   text-align: start;
-  font-size: 1vw;
 }
 .settingTable__button {
   width: 20%;
