@@ -29,7 +29,8 @@ export default {
     }
   },
   created: function () {
-    this.getAirportData()
+    //this.getAirportData()
+    this.parseRawData(this.getFakeSVOData())
   },
   methods: {
     getAirportData: function (obj) {
