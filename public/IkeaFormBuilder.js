@@ -5,7 +5,7 @@ function IkeaFormBuilder(options) {
    * */
   this.options = JSON.parse(JSON.stringify(options));
   this.rootElem = document.getElementById('IkeaFormBuilder');
-  
+
   this._inputsData = {};
   this._inputIndex = 0;
 
@@ -13,9 +13,9 @@ function IkeaFormBuilder(options) {
     throw new Error('IkeaFormBuilder error: rootElem not found');
 
   /**
-   * Фанки для создания "кастомных" контролов.
-   * Просто абстракция, для создания более сложного html.
-   */ 
+   * Funcs for creating custom controls.
+   * Just abstraction, to create more complex html.
+   */
   this._customControls = {
     checkboxGroup: function (option) {
       return this._createGroupControl(option, 'checkbox');
@@ -33,21 +33,21 @@ function IkeaFormBuilder(options) {
     var node;
     try {
       node = this.createNewElement(option);
-    } catch(err) {
-      //В случае врзникновения ошибок, создаем уведомляющий компонент
+    } catch (err) {
+      // create notification control
       this.rootElem.appendChild(this.createNewElement({
         type: 'h4',
-        properties: { 
-          innerText: 'Ошибка при создании компонента: ' + err.message 
+        properties: {
+          innerText: 'Ошибка при создании компонента: ' + err.message
         },
         classList: ['formBuilderError']
       }));
       return;
     }
-    
+
     if (this.rootElem.children.length > 0)
       this.rootElem.appendChild(document.createElement('br'));
-    
+
     this.rootElem.appendChild(node);
   }.bind(this));
 
@@ -55,21 +55,31 @@ function IkeaFormBuilder(options) {
   console.log(this._inputsData);
 }
 
+/**
+ * func generates ul wrap and 
+ * li for every value in option.values array.
+ */
 IkeaFormBuilder.prototype._createGroupControl = function (option, childsType) {
   option.type = 'ul';
   if (childsType) option.classList = ['undecoratedList'];
   var elem = this.createNewElement(option);
 
-  var groupName = 'metaName' + Math.floor(Math.random() * 10000);
+  var groupName = this._GetId();
   option.values.forEach(function (val) {
     var liElem = document.createElement('li');
-    var inputID = 'metaLabel' + Math.floor(Math.random() * 10000);
 
-    if (childsType)
+    // code for linkage inputs with labels
+    var inputID = this._GetId();
+    if (childsType) {
       liElem.appendChild(this.createNewElement({
         type: 'input',
-        properties: { type: childsType, id: inputID, name: groupName }
+        properties: {
+          type: childsType,
+          id: inputID,
+          name: groupName
+        }
       }));
+    }
 
     liElem.appendChild(this.createNewElement({
       type: 'label',
@@ -79,6 +89,7 @@ IkeaFormBuilder.prototype._createGroupControl = function (option, childsType) {
     elem.appendChild(liElem);
   }.bind(this));
 
+  // Wraper for insert header
   if (option.label) {
     var divWrap = document.createElement('div');
     divWrap.appendChild(this.createNewElement({
@@ -87,37 +98,35 @@ IkeaFormBuilder.prototype._createGroupControl = function (option, childsType) {
       classList: ['formBuilderLabel']
     }));
     divWrap.appendChild(elem);
+
     return divWrap;
   }
 
   return elem;
 }
 
-IkeaFormBuilder.prototype._copyProps = function (obj1, obj2) {
-  for (propName in obj1)
-    obj2[propName] = obj1[propName];
-}
-
 IkeaFormBuilder.prototype.createNewElement = function (option) {
   var elem = document.createElement(option.type);
 
+  // check custom control or unknown elemnt (error)
   if (elem.toString() === '[object HTMLUnknownElement]')
     if (!this._customControls[option.type])
       throw new Error('IkeaFormBuilder error: unknown elemnt type ' + option.type);
     else
       return this._customControls[option.type](option);
 
+  // create id, if option does not have
+  if (!option.properties)
+    option.properties = { id: this._GetId() };
+  else if (option.properties && !option.properties.id)
+    option.properties.id = this._GetId();
+
   this._copyProps(option.properties, elem);
 
-  if (option.type === 'input' && this._inputsData.length > 0) {
-    elem.innerText = this._inputsData[this._inputIndex];
-    this._inputIndex++;
-  }
-
   if (option.classList)
-    //classList.add(['example', 'example2']) => className = 'example, example2'
     elem.className += option.classList.join(' ');
 
+  // childs generation
   if (option.childs)
     option.childs.forEach(function (child) {
       elem.appendChild(this.createNewElement(child));
@@ -126,12 +135,24 @@ IkeaFormBuilder.prototype.createNewElement = function (option) {
   return elem;
 }
 
+// Because of es5
+IkeaFormBuilder.prototype._copyProps = function (obj1, obj2) {
+  for (propName in obj1)
+    obj2[propName] = obj1[propName];
+}
+
+IkeaFormBuilder.prototype._GetId = function () {
+  return 'metaID' + Math.floor(Math.random() * 100000);
+}
+
 IkeaFormBuilder.prototype.sendData = function () {
   var inputs = this.rootElem.querySelectorAll('input');
 
   if (inputs.length > 0)
-    //все для ie
-    for (var i = 0; i < inputs.length; i++) {
-      this._inputsData[inputs[i].id] = inputs[i].value;
-    }
+    Array.prototype.forEach.call(inputs, function (input) {
+      if (input.type == 'radio' || input.type == 'checkbox')
+        this._inputsData[input.id] = input.checked;
+      else
+        this._inputsData[input.id] = input.value;
+    }.bind(this));
 }
