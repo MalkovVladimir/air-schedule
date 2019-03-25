@@ -6,12 +6,16 @@ function IkeaFormBuilder(options) {
   this.options = JSON.parse(JSON.stringify(options));
   this.rootElem = document.getElementById('IkeaFormBuilder');
   
-  this._inputsData = [];
+  this._inputsData = {};
   this._inputIndex = 0;
 
   if (!this.rootElem)
     throw new Error('IkeaFormBuilder error: rootElem not found');
 
+  /**
+   * Фанки для создания "кастомных" контролов.
+   * Просто абстракция, для создания более сложного html.
+   */ 
   this._customControls = {
     checkboxGroup: function (option) {
       return this._createGroupControl(option, 'checkbox');
@@ -25,8 +29,22 @@ function IkeaFormBuilder(options) {
   };
 
   options.forEach(function (option) {
-    var node = this.createNewElement(option);
 
+    var node;
+    try {
+      node = this.createNewElement(option);
+    } catch(err) {
+      //В случае врзникновения ошибок, создаем уведомляющий компонент
+      this.rootElem.appendChild(this.createNewElement({
+        type: 'h4',
+        properties: { 
+          innerText: 'Ошибка при создании компонента: ' + err.message 
+        },
+        classList: ['formBuilderError']
+      }));
+      return;
+    }
+    
     if (this.rootElem.children.length > 0)
       this.rootElem.appendChild(document.createElement('br'));
     
@@ -38,8 +56,6 @@ function IkeaFormBuilder(options) {
 }
 
 IkeaFormBuilder.prototype._createGroupControl = function (option, childsType) {
-  //var optionCopy = {};
-  //this._copyProps(option, optionCopy);
   option.type = 'ul';
   if (childsType) option.classList = ['undecoratedList'];
   var elem = this.createNewElement(option);
@@ -67,7 +83,8 @@ IkeaFormBuilder.prototype._createGroupControl = function (option, childsType) {
     var divWrap = document.createElement('div');
     divWrap.appendChild(this.createNewElement({
       type: 'h4',
-      properties: { innerText: option.label }
+      properties: { innerText: option.label },
+      classList: ['formBuilderLabel']
     }));
     divWrap.appendChild(elem);
     return divWrap;
@@ -112,8 +129,9 @@ IkeaFormBuilder.prototype.createNewElement = function (option) {
 IkeaFormBuilder.prototype.sendData = function () {
   var inputs = this.rootElem.querySelectorAll('input');
 
-  if (inputs)
-    inputs.forEach(function (input) {
-      this._inputsData.push(input.value);
-    }.bind(this));
+  if (inputs.length > 0)
+    //все для ie
+    for (var i = 0; i < inputs.length; i++) {
+      this._inputsData[inputs[i].id] = inputs[i].value;
+    }
 }
