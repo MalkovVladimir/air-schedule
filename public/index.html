@@ -19,6 +19,7 @@
       border-radius: 1rem;
       background-color: white;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+      font-family: Arial, Helvetica, sans-serif
     }
 
     .formBuilderWrap {
@@ -39,134 +40,63 @@
     .formBuilderInput {
       width: 100%;
     }
+
+    .undecoratedList {
+      list-style-type: none;
+      padding: 0;
+    }
   </style>
 </head>
 
 <body>
   <div id="IkeaFormBuilder"></div>
+  <script src="IkeaFormBuilder.js"></script>
   <script>
     new IkeaFormBuilder([
       {
-        type: 'button',
-        label: 'Кнопка: ',
-        properties: {
-          innerText: 'OK'
-        },
-        classList: ['formBuilderElement', 'formBuilderBtn']
+        type: 'simpleList',
+        label: 'Навыки',
+        values: [ 'frontend', 'backend', 'DB and ORM' ]
+      },
+      {
+        type: 'label',
+        properties: { innerText: 'Введите ФИО:' }
       },
       {
         type: 'input',
-        properties: {
-          placeholder: 'sometext'
-        },
+        properties: { placeholder: 'Введите текст', value: 'Hello world!' },
         classList: ['formBuilderElement']
       },
       {
+        type: 'label',
+        properties: { innerText: 'Введите сообщение:' }
+      },
+      {
         type: 'textArea',
-        properties: {
-          placeholder: 'sometextIntext area'
-        }
+        properties: { placeholder: 'Введите многострочный текст' },
+        classList: ['formBuilderElement']
       },
       {
         type: 'radioGroup',
-        label: 'choseYourAnswer',
-        values: ['val1', 'val2']
+        label: 'Выберите один ответ:',
+        values: ['Принять в штаб', 'Принять в штаб быстро']
       },
       {
         type: 'checkboxGroup',
-        label: 'chose some value',
-        values: ['val21', 'val22']
+        label: 'Выберите подходяще варианты',
+        values: ['Лето', 'Зима', 'Осень', 'Весна']
+      },
+      {
+        type: 'input',
+        label: 'Сейчас: ',
+        properties: { type: 'date' }
+      },
+      {
+        type: 'button',
+        properties: { innerText: 'OK', onclick: function() { alert(event.target.innerText) } },
+        classList: ['formBuilderElement', 'formBuilderBtn']
       }
-    ]);
-
-    function IkeaFormBuilder(options) {
-      this.rootElem = document.getElementById('IkeaFormBuilder');
-
-      this._customControls = {
-        checkboxGroup: function (option) {
-          return this._createGroupControl(option, 'checkbox')
-        }.bind(this),
-        radioGroup: function (option) {
-          return this._createGroupControl(option, 'radio')
-        }.bind(this)
-      };
-
-      this._createGroupControl = function (option, childsType) {
-        /*
-         * в es6 я бы создал копию посредством let или 
-         * юзал бы Object.assign(), тут же создаю копию объекта,
-         * чтобы не пострадал исходный объект опций.
-         */
-        var optionCopy = {};
-        _copyProps(option, optionCopy);
-        optionCopy.type = 'div';
-        var divWrap = this.createNewElement(optionCopy);
-
-        if (option.label)
-          divWrap.appendChild(this.createNewElement({
-            type: 'label',
-            properties: { innerText: option.label }
-          }))
-
-        var groupName = 'metaName' + Math.floor(Math.random() * 10000);
-        option.values.forEach(function (val) {
-          var inputID = 'metaLabel' + Math.floor(Math.random() * 10000);
-
-          divWrap.appendChild(this.createNewElement({
-            type: 'input',
-            properties: { type: childsType, id: inputID, name: groupName }
-          }))
-
-          divWrap.appendChild(this.createNewElement({
-            type: 'label',
-            properties: { innerText: val, htmlFor: inputID }
-          }))
-        }.bind(this));
-
-        return divWrap;
-      }
-
-      function _copyProps(obj1, obj2) {
-        for (propName in obj1)
-          obj2[propName] = obj1[propName];
-      }
-
-      this.createNewElement = function (option, root) {
-        if (!this.rootElem)
-          throw new Error('IkeaFormBuilder error: rootElem not found');
-
-        var elem = document.createElement(option.type);
-
-        if (elem.toString() === '[object HTMLUnknownElement]')
-          if (!this._customControls[option.type])
-            throw new Error('IkeaFormBuilder error: unknown elemnt type ' + option.type);
-          else
-            return this._customControls[option.type](option);
-
-        // es5 не имеет Object.assign()
-        for (propName in option.properties) {
-          elem[propName] = option.properties[propName];
-        }
-
-        if (option.classList)
-          //classList.add(['example', 'example2']) => className = 'example, example2'
-          elem.className += option.classList.join(' ');
-
-        if (option.childs)
-          option.childs.forEach(function (child) {
-            elem.appendChild(this.createNewElement(child));
-          }.bind(this));
-
-        return elem;
-      }.bind(this);
-
-      options.forEach(function (option) {
-        console.log(option.type);
-        var node = this.createNewElement(option);
-        console.log(node);
-        this.rootElem.appendChild(node);
-      }.bind(this));
-    }
+    ]); 
   </script>
 </body>
 
